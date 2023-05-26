@@ -1,32 +1,33 @@
+# How to Guide Script that takes screenshots and helps you take notes.
 from pynput import mouse
 import pyautogui
 
-screenshot_counter = 0
-comment_counter = 0
+SCREENSHOT_COUNTER = 0
+COMMENT_COUNTER = 0
 
 
 
 def comment():
-    global comment_counter
+    # Crestes the comment from the terminal and adds it to the document
+    global COMMENT_COUNTER
     usercomment = input('Please notate what step you just performed.')
-    with open('HowToGuide.doc','a') as file:
-        file.write(f'\n {comment_counter}. {usercomment} \n')
-        comment_counter += 1
+    with open('HowToGuide.doc','a',encoding="utf-8") as file:
+        file.write(f'\n {COMMENT_COUNTER}. {usercomment} \n')
+        COMMENT_COUNTER += 1
 
 
 def capture_screenshot():
     # Counter for numbering screenshots
-    global screenshot_counter
+    global SCREENSHOT_COUNTER
 
     # Capture screenshot
-    filename = f'screenshot{screenshot_counter}.png'
-    screenshot = pyautogui.screenshot(f'{filename}')
-    with open('HowToGuide.doc','a') as file:
+    filename = f'screenshot{SCREENSHOT_COUNTER}.png'
+    pyautogui.screenshot(f'{filename}')
+    with open('HowToGuide.doc','a',encoding="utf-8") as file:
         file.write(f' \n Insert {filename} here.')
 
     # Increment counter for the next screenshot
-    screenshot_counter += 1
-
+    SCREENSHOT_COUNTER += 1
 
 
 def on_click(x, y, button, pressed):
@@ -36,11 +37,10 @@ def on_click(x, y, button, pressed):
         print(f"Mouse button {button} pressed at ({x}, {y})")
 
 
-
 def main():
 
     document_title = input("Type in the title of the Knowledge Article:").upper()
-    with open('HowToGuide.doc','a') as file:
+    with open('HowToGuide.doc','a',encoding="utf-8") as file:
         file.write(f'{document_title}')
 
     # Create a mouse listener
@@ -50,5 +50,6 @@ def main():
     # Keep the script running
     listener.join()
 
+if __name__ == '__main__':
 
-main()
+    main()
