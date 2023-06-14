@@ -22,7 +22,7 @@ def continuequestion():
 
 def record_com():
     # Crestes the comment from the terminal and adds it to the document
-    COMMENT_COUNTER = 0
+    COMMENT_COUNTER = 1
     usercomment = input('Please notate what step you just performed.')
     with open('HowToGuide.doc','a') as file:
         file.write(f'\n {COMMENT_COUNTER}. {usercomment} \n')
