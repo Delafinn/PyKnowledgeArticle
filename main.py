@@ -14,7 +14,7 @@ def on_click(x, y, button, pressed):
 
         # Capture screenshot
         filename = f'screenshot{SCREENSHOT_COUNTER}.png'
-        pyautogui.screenshot(f'{filename}',region =(x,y,240,480))
+        pyautogui.screenshot(f'{filename}')
         with open('HowToGuide.doc','a') as file:
             file.write(f' \n Insert {filename} here.')
 
